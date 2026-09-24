@@ -1,0 +1,69 @@
+diff --git a/resources/definitions/fdmprinter.def.json b/resources/definitions/fdmprinter.def.json
+--- a/resources/definitions/fdmprinter.def.json
++++ b/resources/definitions/fdmprinter.def.json
+@@ -1354,6 +1354,27 @@
+                     "limit_to_extruder": "wall_0_extruder_nr",
+                     "settable_per_mesh": true
+                 },
++                "elephant_foot_compensation_layers":
++                {
++                    "label": "Elephant Foot Compensation Layer Count",
++                    "description": "Number of first printed layers that use Initial Layer Horizontal Expansion. A value of 1 preserves the standard Cura behavior.",
++                    "type": "int",
++                    "minimum_value": "1",
++                    "maximum_value_warning": "20",
++                    "default_value": 1,
++                    "limit_to_extruder": "wall_0_extruder_nr",
++                    "settable_per_mesh": true
++                },
++                "elephant_foot_compensation_taper":
++                {
++                    "label": "Elephant Foot Gradual Compensation",
++                    "description": "Gradually changes the value from Initial Layer Horizontal Expansion toward Horizontal Expansion across the selected compensation layers.",
++                    "type": "bool",
++                    "default_value": false,
++                    "enabled": "elephant_foot_compensation_layers > 1",
++                    "limit_to_extruder": "wall_0_extruder_nr",
++                    "settable_per_mesh": true
++                },
+                 "hole_xy_offset":
+                 {
+                     "label": "Hole Horizontal Expansion",
+diff --git a/resources/i18n/tr_TR/fdmprinter.def.json.po b/resources/i18n/tr_TR/fdmprinter.def.json.po
+--- a/resources/i18n/tr_TR/fdmprinter.def.json.po
++++ b/resources/i18n/tr_TR/fdmprinter.def.json.po
+@@ -1874,6 +1874,22 @@
+ msgid "Initial Layer Horizontal Expansion"
+ msgstr "İlk Katmanın Yatay Genişlemesi"
+ 
++msgctxt "elephant_foot_compensation_layers label"
++msgid "Elephant Foot Compensation Layer Count"
++msgstr "Fil Ayağı Telafi Katman Sayısı"
++
++msgctxt "elephant_foot_compensation_layers description"
++msgid "Number of first printed layers that use Initial Layer Horizontal Expansion. A value of 1 preserves the standard Cura behavior."
++msgstr "İlk Katmanın Yatay Genişlemesi ayarının uygulanacağı ilk basılan katmanların sayısıdır. 1 değeri standart Cura davranışını korur."
++
++msgctxt "elephant_foot_compensation_taper label"
++msgid "Elephant Foot Gradual Compensation"
++msgstr "Fil Ayağı Kademeli Telafi"
++
++msgctxt "elephant_foot_compensation_taper description"
++msgid "Gradually changes the value from Initial Layer Horizontal Expansion toward Horizontal Expansion across the selected compensation layers."
++msgstr "Değeri, seçilen telafi katmanları boyunca İlk Katmanın Yatay Genişlemesi'nden Yatay Büyüme değerine doğru kademeli olarak değiştirir."
++
+ msgctxt "wall_x_material_flow_layer_0 label"
+ msgid "Initial Layer Inner Wall Flow"
+ msgstr "İlk Katman İç Duvar Akışı"
+diff --git a/resources/setting_visibility/expert.cfg b/resources/setting_visibility/expert.cfg
+--- a/resources/setting_visibility/expert.cfg
++++ b/resources/setting_visibility/expert.cfg
+@@ -39,6 +39,8 @@
+ fill_outline_gaps
+ xy_offset
+ xy_offset_layer_0
++elephant_foot_compensation_layers
++elephant_foot_compensation_taper
+ hole_xy_offset
+ hole_xy_offset_max_diameter
+ z_seam_type

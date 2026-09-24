@@ -1,0 +1,56 @@
+diff --git a/src/slicer.cpp b/src/slicer.cpp
+--- a/src/slicer.cpp
++++ b/src/slicer.cpp
+@@ -4,6 +4,7 @@
+ #include "slicer.h"
+ 
+ #include <algorithm> // remove_if
++#include <cmath>
+ #include <cstdio>
+ #include <numbers>
+ 
+@@ -1058,6 +1059,9 @@
+ 
+     const coord_t xy_offset = mesh.settings_.get<coord_t>("xy_offset");
+     const coord_t xy_offset_0 = mesh.settings_.get<coord_t>("xy_offset_layer_0");
++    // Elephant foot compensation over the first N printed layers. N = 1 keeps the standard Cura behaviour.
++    const size_t compensation_layers = static_cast<size_t>(std::max(1, mesh.settings_.get<int>("elephant_foot_compensation_layers")));
++    const bool compensation_taper = mesh.settings_.get<bool>("elephant_foot_compensation_taper");
+     const coord_t xy_offset_hole = mesh.settings_.get<coord_t>("hole_xy_offset");
+     const coord_t hole_offset_max_diameter = mesh.settings_.get<coord_t>("hole_xy_offset_max_diameter");
+ 
+@@ -1066,9 +1070,32 @@
+     cura::parallel_for<size_t>(
+         0,
+         layers.size(),
+-        [&layers, layer_apply_initial_xy_offset, xy_offset, xy_offset_0, xy_offset_hole, hole_offset_max_diameter, max_hole_area](size_t layer_nr)
++        [&layers, layer_apply_initial_xy_offset, xy_offset, xy_offset_0, compensation_layers, compensation_taper, xy_offset_hole, hole_offset_max_diameter, max_hole_area](
++            size_t layer_nr)
+         {
+-            const auto xy_offset_local = (layer_nr <= layer_apply_initial_xy_offset) ? xy_offset_0 : xy_offset;
++            coord_t xy_offset_local = xy_offset;
++            if (layer_nr <= layer_apply_initial_xy_offset)
++            {
++                // First printed layer: identical to the standard Cura behaviour.
++                xy_offset_local = xy_offset_0;
++            }
++            else
++            {
++                const size_t printed_layer = layer_nr - layer_apply_initial_xy_offset; // 1 .. N-1 inside the compensation range
++                if (printed_layer < compensation_layers)
++                {
++                    if (compensation_taper)
++                    {
++                        // Step from the initial layer value toward the normal value; the first layer after the range uses xy_offset.
++                        const double fraction = static_cast<double>(printed_layer) / static_cast<double>(compensation_layers);
++                        xy_offset_local = static_cast<coord_t>(std::llround(std::lerp(static_cast<double>(xy_offset_0), static_cast<double>(xy_offset), fraction)));
++                    }
++                    else
++                    {
++                        xy_offset_local = xy_offset_0;
++                    }
++                }
++            }
+             if (xy_offset_local != 0)
+             {
+                 layers[layer_nr].polygons_ = layers[layer_nr].polygons_.offset(xy_offset_local, ClipperLib::JoinType::jtRound);

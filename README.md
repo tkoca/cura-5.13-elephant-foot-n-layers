@@ -2,6 +2,8 @@
 
 [English](README.md) · [Türkçe](README_tr.md)
 
+> **Linux:** the Linux x86_64 version (official AppImage) is in a separate repository: [cura-5.13-elephant-foot-n-layers-linux](https://github.com/tkoca/cura-5.13-elephant-foot-n-layers-linux).
+
 An unofficial add-on for **UltiMaker Cura 5.13.0 on Windows x64**. It applies *Initial Layer Horizontal Expansion* to the first **N** printed layers instead of only the first one, and can optionally step the value back to the normal *Horizontal Expansion* over those layers.
 
 > This is a community project. It is not made, endorsed or supported by UltiMaker.

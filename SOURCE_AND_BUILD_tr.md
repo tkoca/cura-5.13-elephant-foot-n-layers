@@ -116,3 +116,7 @@ Eklentinin değiştirdiği UltiMaker Cura 5.13.0 (Windows x64) dosyalarının SH
 
 - Cura 5.13.0: https://github.com/Ultimaker/Cura/tree/5.13.0 (LGPL-3.0-or-later)
 - CuraEngine 5.13.0: https://github.com/Ultimaker/CuraEngine/tree/5.13.0 (AGPL-3.0-or-later)
+
+## Linux
+
+Linux sürümü aynı yamaları ve kaynak dosyalarını kullanır; kaynak kodu ve derlemesi [cura-5.13-elephant-foot-n-layers-linux](https://github.com/tkoca/cura-5.13-elephant-foot-n-layers-linux) deposundadır.

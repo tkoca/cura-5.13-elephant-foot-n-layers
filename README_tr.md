@@ -2,6 +2,8 @@
 
 [English](README.md) · [Türkçe](README_tr.md)
 
+> **Linux:** Linux x86_64 sürümü (resmi AppImage) ayrı bir depodadır: [cura-5.13-elephant-foot-n-layers-linux](https://github.com/tkoca/cura-5.13-elephant-foot-n-layers-linux).
+
 Bu, **Windows x64 üzerindeki UltiMaker Cura 5.13.0** için resmi olmayan bir eklentidir. *İlk Katmanın Yatay Genişlemesi* değerini yalnızca ilk katmana değil, basılan ilk **N** katmana uygular. İsteğe bağlı olarak değeri bu katmanlar boyunca adım adım normal *Yatay Büyüme* değerine döndürür.
 
 > Bu bir topluluk projesidir. UltiMaker bu projeyi geliştirmemiştir, onaylamamıştır ve desteklememektedir.

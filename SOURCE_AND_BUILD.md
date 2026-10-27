@@ -115,3 +115,7 @@ SHA-256 of the files of UltiMaker Cura 5.13.0 for Windows x64 that the add-on re
 ## Linux
 
 The Linux version uses the same patches and resource files; its source and build are in [cura-5.13-elephant-foot-n-layers-linux](https://github.com/tkoca/cura-5.13-elephant-foot-n-layers-linux).
+
+## macOS
+
+The macOS version (Apple silicon) uses the same patches and resource files; its source and build are in [cura-5.13-elephant-foot-n-layers-macos](https://github.com/tkoca/cura-5.13-elephant-foot-n-layers-macos).

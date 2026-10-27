@@ -120,3 +120,7 @@ Eklentinin değiştirdiği UltiMaker Cura 5.13.0 (Windows x64) dosyalarının SH
 ## Linux
 
 Linux sürümü aynı yamaları ve kaynak dosyalarını kullanır; kaynak kodu ve derlemesi [cura-5.13-elephant-foot-n-layers-linux](https://github.com/tkoca/cura-5.13-elephant-foot-n-layers-linux) deposundadır.
+
+## macOS
+
+macOS sürümü (Apple çipli Mac'ler) aynı yamaları ve kaynak dosyalarını kullanır; kaynak kodu ve derlemesi [cura-5.13-elephant-foot-n-layers-macos](https://github.com/tkoca/cura-5.13-elephant-foot-n-layers-macos) deposundadır.
